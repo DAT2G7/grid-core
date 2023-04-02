@@ -1,0 +1,16 @@
+{
+    "include": ["./src/**/*"],
+    "compilerOptions": {
+        "rootDir": "./src/",
+        "outDir": "./dist/",
+        "noImplicitAny": true,
+        "module": "es6",
+        "target": "es5",
+        "jsx": "react",
+        "allowJs": false,
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "sourceMap": true
+    }
+}

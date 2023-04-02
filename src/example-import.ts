@@ -1,0 +1,1 @@
+export const exampleImport = 'example-import';
