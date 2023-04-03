@@ -5,14 +5,16 @@
     "type": "commonjs",
     "scripts": {
         "webpack": "webpack --mode=production",
-        "__watch": "nodemon --watch src --exec \"ts-node\" src/index.ts",
-        "_watch": "nodemon src/index.ts",
-        "___watch": "nodemon --watch \"src/**\" --ext \"ts,json\" --ignore \"src/**/*.spec.ts\" --exec \"ts-node src/index.ts\"",
-        "watch": "npx tsc && concurrently \"npx tsc -w\" \"nodemon watch/index.js\""
+        "watch": "npx tsc && concurrently \"npx tsc -w\" \"nodemon watch/index.js\"",
+        "test": "jest --verbose"
+    },
+    "jest": {
+        "preset": "ts-jest"
     },
     "devDependencies": {
         "concurrently": "^7.6.0",
         "nodemon": "^2.0.21",
+        "ts-jest": "^29.1.0",
         "ts-loader": "^9.4.2",
         "ts-node": "^10.9.1",
         "typescript": "^5.0.2",
