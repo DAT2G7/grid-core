@@ -7,6 +7,9 @@
         "webpack": "webpack --mode=production",
         "build": "npx tsc",
         "watch": "npx tsc && concurrently \"npx tsc -w\" \"nodemon watch/index.js\"",
+        "lint": "eslint . --ext .ts",
+        "lint:fix": "eslint . --ext .ts --fix",
+        "prettier": "prettier --config .prettierrc 'src/**/*.ts' --write",
         "test": "jest --verbose"
     },
     "jest": {
