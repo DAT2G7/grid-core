@@ -2,7 +2,7 @@ export const matrixVectorProduct = (
     matrix: number[][],
     vector: number[]
 ): number[] => {
-    let product = Array(matrix.length);
+    const product = Array(matrix.length);
 
     for (let i = 0; i < matrix.length; i++) {
         const row = matrix[i];
