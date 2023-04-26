@@ -18,9 +18,9 @@ const run = async () => {
     // The example core will help compute a large matrix-matrix product.
     // In order to do this, it will receive a left-hand matrix (row-major), `matrix`, and a column of the right-hand matrix, `column`.
     // The matrix-vector product of these will then be the column in the resulting matrix-matrix product at the position of `column`.
-    const { matrix, column } = (await self.getData()) as TaskData;
+    const taskData: TaskData = (await self.getData()) as TaskData;
 
-    const product = matrixVectorProduct(matrix, column);
+    const product = matrixVectorProduct(taskData.matrix, taskData.column);
 
     await self.sendResult(product);
 };
