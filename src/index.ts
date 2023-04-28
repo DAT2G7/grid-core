@@ -1,6 +1,6 @@
 /// <reference lib="webworker" />
 
-import { matrixVectorProduct } from "./lib";
+import { matrixProduct } from "./lib";
 
 // Declares type of self,
 declare const self: DedicatedWorkerGlobalScope & {
@@ -10,17 +10,17 @@ declare const self: DedicatedWorkerGlobalScope & {
 };
 
 interface TaskData {
-    matrix: number[][];
-    column: number[];
+    matrixA: number[][];
+    matrixB: number[][];
 }
 
 const run = async () => {
-    // The example core will help compute a large matrix-matrix product.
-    // In order to do this, it will receive a left-hand matrix (row-major), `matrix`, and a column of the right-hand matrix, `column`.
-    // The matrix-vector product of these will then be the column in the resulting matrix-matrix product at the position of `column`.
+    // The example core will help compute a large chain matrix-matrix products.
+    // In order to do this, it will receive two matrices (row-major), `matrixA` and `matrixB`, and compute the product between the two.
+    // This product can then be multiplied together with another matrix, which could be the result of another grid computation.
     const taskData: TaskData = (await self.getData()) as TaskData;
 
-    const product = matrixVectorProduct(taskData.matrix, taskData.column);
+    const product = matrixProduct(taskData.matrixA, taskData.matrixB);
 
     await self.sendResult(product);
 };

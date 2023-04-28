@@ -1,21 +1,23 @@
-export const matrixVectorProduct = (
-    matrix: number[][],
-    vector: number[]
-): number[] => {
-    const product = Array(matrix.length);
+export const matrixProduct = (
+    matrixA: number[][],
+    matrixB: number[][]
+): number[][] => {
+    const product: number[][] = Array(matrixA.length);
 
-    for (let i = 0; i < matrix.length; i++) {
-        const row = matrix[i];
-        if (row.length != vector.length) {
-            throw `Mismatch in lengths of row ${i} of the matrix (length ${row.length}) and the vector (length ${vector.length})`;
+    for (let i = 0; i < matrixA.length; i++) {
+        product[i] = Array(matrixB[i].length);
+
+        if (matrixA[i].length != matrixB.length) {
+            throw `mismatched size between row ${i} of left matrix (${matrixA[i].length} columns) and right matrix (${matrixB.length} rows)`;
         }
 
-        let s = 0;
+        for (let j = 0; j < matrixB[i].length; j++) {
+            product[i][j] = 0;
 
-        for (let j = 0; j < row.length; j++) {
-            s += row[j] * vector[j];
+            for (let k = 0; k < matrixB.length; k++) {
+                product[i][j] += matrixA[i][k] * matrixB[k][j];
+            }
         }
-        product[i] = s;
     }
 
     return product;
