@@ -1,10 +1,13 @@
 export const matrixProduct = (
     matrixA: number[][],
-    matrixB: number[][]
+    matrixB: number[][],
+    saveRow: (index: number, row: number[]) => Promise<void>,
+    startIndex: number,
+    currentProduct: number[][] | undefined
 ): number[][] => {
-    const product: number[][] = Array(matrixA.length);
+    const product: number[][] = currentProduct || Array(matrixA.length);
 
-    for (let i = 0; i < matrixA.length; i++) {
+    for (let i = startIndex; i < matrixA.length; i++) {
         product[i] = Array(matrixB[i].length);
 
         if (matrixA[i].length != matrixB.length) {
@@ -18,6 +21,7 @@ export const matrixProduct = (
                 product[i][j] += matrixA[i][k] * matrixB[k][j];
             }
         }
+        saveRow(i, product[i]);
     }
 
     return product;
