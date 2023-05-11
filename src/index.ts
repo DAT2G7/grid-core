@@ -43,7 +43,7 @@ const run = async () => {
 
     const startIndex = (await db.get("currentRow", "currentRow")) || 0;
 
-    const saved: number[][] = Array(startIndex);
+    const saved: number[][] = Array(taskData.matrixA.length);
     let cursor = await db.transaction("rows").store.openCursor();
 
     while (cursor) {
