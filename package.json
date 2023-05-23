@@ -5,6 +5,7 @@
     "type": "commonjs",
     "scripts": {
         "webpack": "webpack --mode=production",
+        "build": "npm run webpack",
         "lint": "eslint . --ext .ts",
         "lint:fix": "eslint . --ext .ts --fix",
         "prettier": "prettier --config .prettierrc 'src/**/*.ts' --write",
