@@ -35,6 +35,7 @@ const run = async () => {
 
     // Ideally this would contain the core id
     const db = await openDB<Db>("coreMatMul", 1, {
+        // `upgrade` is used to initialize the database
         upgrade(db) {
             db.createObjectStore("currentRow");
             db.createObjectStore("rows");
@@ -44,8 +45,11 @@ const run = async () => {
     const startIndex = (await db.get("currentRow", "currentRow")) || 0;
 
     const saved: number[][] = Array(taskData.matrixA.length);
+
+    // create a cursor to allow us to iterate over all the keys in the "rows" store
     let cursor = await db.transaction("rows").store.openCursor();
 
+    // load all the rows saved in the database
     while (cursor) {
         saved[cursor.key] = cursor.value;
         cursor = await cursor.continue();
